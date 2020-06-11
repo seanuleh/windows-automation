@@ -1,6 +1,13 @@
 # The role accepts a list and creates users based on a list of values called user_info.
 # The role uses the win_domain_user module and loop
 ---
+- name: Create group from list
+  win_domain_group:
+    name: "{{ item.group_name }}"
+    scope: "{{ item.group_scope }}"
+  with_items: "{{ user_info }}"
+  when: item.group_scope.exists == true
+
 - name: Create users from list
   win_domain_user:
     name: "{{ item.name }}"
@@ -10,3 +17,4 @@
     state: present
     groups: "{{ item.group }}"
   with_items: "{{ user_info }}"
+  when: item.group_scope.exists == false
