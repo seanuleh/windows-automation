@@ -6,6 +6,11 @@
 # The role accepts a service_name and creates a firewall rule based on that name.
 # The role allows ingress traffic to a port based on the local_port variable and the protocol is based on the protocol_name variable.
 ---
+- name: install_chocolatey
+  win_chocolatey:
+    name: "chocolatey"
+    state: downgrade
+    version: 0.10.11
 - name: install {{ package_name }}
   win_chocolatey:
     name: "{{ package_name }}"
