@@ -1,0 +1,8 @@
+---
+user_info:
+  - {name: 'james', firstname: 'James', surname: 'Jockey', password: 'redhat@123', group: 'dev'}
+  - {name: 'bill', firstname: 'Bill', surname: 'Gates', password: 'redhat@123', group: 'dev'}
+  - {name: 'mickey', firstname: 'Mickey', surname: 'Mouse', password: 'redhat@123', group: 'qa'}
+  - {name: 'donald', firstname: 'Donald', surname: 'Duck', password: 'redhat@123', group: 'qa'}
+  - {group_name: 'dev', group_scope: 'domainlocal' }
+  - {group_name: 'qa', group_scope: 'domainlocal' }
