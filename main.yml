@@ -1,0 +1,5 @@
+---
+- name: install and configure active directory
+  hosts: windows
+  roles:
+    - win_ad_install
