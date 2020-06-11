@@ -5,8 +5,8 @@
   win_domain_group:
     name: "{{ item.group_name }}"
     scope: "{{ item.group_scope }}"
-  with_items: "{{ user_info }}"
-  when: item.group_scope
+  loop: "{{ user_info }}"
+  when: "item.group_scope is defined"
 
 - name: Create users from list
   win_domain_user:
@@ -16,5 +16,5 @@
     password: "{{ item.password }}"
     state: present
     groups: "{{ item.group }}"
-  with_items: "{{ user_info }}"
-  when: not item.group_scope
+  loop: "{{ user_info }}"
+  when: "item.firstname is defined"
