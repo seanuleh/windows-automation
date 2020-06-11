@@ -6,7 +6,7 @@
     name: "{{ item.group_name }}"
     scope: "{{ item.group_scope }}"
   with_items: "{{ user_info }}"
-  when: item.group_scope.exists == true
+  when: item.group_scope
 
 - name: Create users from list
   win_domain_user:
@@ -17,4 +17,4 @@
     state: present
     groups: "{{ item.group }}"
   with_items: "{{ user_info }}"
-  when: item.group_scope.exists == false
+  when: not item.group_scope
