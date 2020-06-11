@@ -1,0 +1,28 @@
+# In your Ansible project repository, create a role under roles/win_service_config/tasks/main.yml with the following characteristics:
+# The role accepts a package and installs it (hint: use the win_chocolatey module).
+# ansible_distribution is defined as Microsoft Windows Server 2012 R2 Standard.
+# The role accepts a service_name variable and enables it.
+# ansible_distribution is defined as Microsoft Windows Server 2012 R2 Standard.
+# The role accepts a service_name and creates a firewall rule based on that name.
+# The role allows ingress traffic to a port based on the local_port variable and the protocol is based on the protocol_name variable.
+---
+- name: install {{ package }}
+  win_chocolatey:
+    name: "{{ package }}"
+    state: latest
+  when: ansible_distribution == "Microsoft Windows Server 2012 R2 Standard"
+- name: enable service {{ service }}
+  win_service:
+    name: "{{ service }}"
+    state: started
+  when: ansible_distribution == "Microsoft Windows Server 2012 R2 Standard"
+- name: Firewall for "{{ service }}"
+  win_firewall_rule:
+    name: "{{ service }}"
+    localport: "{{ local_port }}"
+    protocol: "{{ protocol_name }}"
+    direction: in
+    action: allow
+    enabled: yes
+    state: present
+ 
